@@ -37,11 +37,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION 1)
 
-add_executable(${PROJECT_NAME}_demo example/src/lib/main.cpp)
+add_executable(${PROJECT_NAME}_demo examples/src/lib/main.cpp)
 target_link_libraries(${PROJECT_NAME}_demo ${PROJECT_NAME}_static)
 
 target_include_directories(${PROJECT_NAME}_demo PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/example/src/include>)
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/examples/src/include>)
 
 install(TARGETS ${PROJECT_NAME} EXPORT FastWFCConfig
   ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -51,11 +51,11 @@ install(TARGETS ${PROJECT_NAME} EXPORT FastWFCConfig
 install(TARGETS ${PROJECT_NAME}_demo EXPORT FastWFCConfig
   ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME  DESTINATION examples)
+  RUNTIME  DESTINATION share/fastwfc-examples)
 
-install(DIRECTORY example/samples DESTINATION examples)
-install(FILES example/samples.xml DESTINATION examples)
-install(FILES example/results/.empty DESTINATION examples/results)
+install(DIRECTORY examples/samples DESTINATION share/fastwfc-examples)
+install(FILES examples/samples.xml DESTINATION share/fastwfc-examples)
+install(FILES examples/results/.empty DESTINATION share/fastwfc-examples/results)
 
 install(TARGETS ${PROJECT_NAME}_static EXPORT FastWFCStaticConfig
   ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}

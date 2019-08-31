@@ -23,8 +23,8 @@ will install the library `fastwfc` and `fastwfc_static` using CMake:
 
 ```
 # Go to install directory
-cd examples
-./wfc_demo
+cd share/fastwfc-examples
+./fastwfc_demo
 ```
 
 will execute WFC on the examples defined in `example/samples.xml`, and will put the results in `example/results`.

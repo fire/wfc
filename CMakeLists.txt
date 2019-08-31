@@ -51,10 +51,11 @@ install(TARGETS ${PROJECT_NAME} EXPORT FastWFCConfig
 install(TARGETS ${PROJECT_NAME}_demo EXPORT FastWFCConfig
   ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
+  RUNTIME  DESTINATION examples)
 
-install(DIRECTORY example/samples DESTINATION bin)
-install(FILES example/samples.xml DESTINATION bin)
+install(DIRECTORY example/samples DESTINATION examples)
+install(FILES example/samples.xml DESTINATION examples)
+install(FILES example/results/.empty DESTINATION examples/results)
 
 install(TARGETS ${PROJECT_NAME}_static EXPORT FastWFCStaticConfig
   ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}

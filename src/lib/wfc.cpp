@@ -1,4 +1,4 @@
-#include "wfc.hpp"
+#include "fastwfc/wfc.hpp"
 #include <limits>
 
 void Propagator::init_compatible() noexcept {

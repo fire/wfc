@@ -12,14 +12,14 @@ endif()
 include(GNUInstallDirs)
 
 set(SOURCE_FILES 
-src/include/utils/array3D.hpp
-src/include/utils/array2D.hpp
-src/include/direction.hpp
-src/include/overlapping_wfc.hpp
-src/include/propagator.hpp
-src/include/tiling_wfc.hpp
-src/include/wave.hpp
-src/include/wfc.hpp
+src/include/fastwfc/utils/array3D.hpp
+src/include/fastwfc/utils/array2D.hpp
+src/include/fastwfc/direction.hpp
+src/include/fastwfc/overlapping_wfc.hpp
+src/include/fastwfc/propagator.hpp
+src/include/fastwfc/tiling_wfc.hpp
+src/include/fastwfc/wave.hpp
+src/include/fastwfc/wfc.hpp
 src/lib/wfc.cpp)
 
 add_library(${PROJECT_NAME}_static STATIC ${SOURCE_FILES})
@@ -37,10 +37,24 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION 1)
 
+add_executable(${PROJECT_NAME}_demo example/src/lib/main.cpp)
+target_link_libraries(${PROJECT_NAME}_demo ${PROJECT_NAME}_static)
+
+target_include_directories(${PROJECT_NAME}_demo PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/example/src/include>)
+
 install(TARGETS ${PROJECT_NAME} EXPORT FastWFCConfig
   ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+install(TARGETS ${PROJECT_NAME}_demo EXPORT FastWFCConfig
+  ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+install(DIRECTORY example/samples DESTINATION bin)
+install(FILES example/samples.xml DESTINATION bin)
 
 install(TARGETS ${PROJECT_NAME}_static EXPORT FastWFCStaticConfig
   ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}

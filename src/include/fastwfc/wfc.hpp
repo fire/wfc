@@ -249,7 +249,7 @@ private:
 
 	/**
 	 * propagator[pattern1][direction] contains all the patterns that can
-	 * be placed in next to pattern1 in the direction direction.
+	 * be placed in next to patterns in the direction direction.
 	 */
 	PropagatorState propagator_state;
 

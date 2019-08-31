@@ -3,6 +3,8 @@
 An implementation of [Wave Function Collapse](https://github.com/mxgmn/WaveFunctionCollapse) with a focus on performance.
 It was called fast-wfc because at the time it introduced optimizations improving the execution time by an order of magnitude.
 
+This branch is based upon https://github.com/math-fehr/fast-wfc.
+
 # Requirements
 
 You need a C++-17 compatible compiler, and CMake installed.
@@ -20,9 +22,8 @@ will install the library `fastwfc` and `fastwfc_static` using CMake:
 # Run the examples
 
 ```
-cd example/
-cmake .
-make
+# Go to install directory
+cd examples
 ./wfc_demo
 ```
 

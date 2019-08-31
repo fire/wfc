@@ -10,6 +10,7 @@
 #include <limits>
 #include <vector>
 #include <unordered_map>
+#include "fastwfc/optional.hpp"
 
 /**
  * Represent a 2D array.
@@ -472,7 +473,7 @@ public:
 	/**
 	 * Run the algorithm, and return a result if it succeeded.
 	 */
-	std::optional<Array2D<unsigned>> run() noexcept;
+	tl::optional<Array2D<unsigned>> run() noexcept;
 
 	/**
 	 * Return value of observe.
@@ -737,7 +738,7 @@ WFC::WFC(bool periodic_output, int seed,
 	nb_patterns(propagator.size()),
 	propagator(wave.height, wave.width, periodic_output, propagator) {}
 
-std::optional<Array2D<unsigned>> WFC::run() noexcept {
+tl::optional<Array2D<unsigned>> WFC::run() noexcept {
 	while (true) {
 
 		// Define the value of an undefined cell.
@@ -745,7 +746,7 @@ std::optional<Array2D<unsigned>> WFC::run() noexcept {
 
 		// Check if the algorithm has terminated.
 		if (result == failure) {
-			return std::nullopt;
+			return tl::nullopt;
 		}
 		else if (result == success) {
 			return wave_to_output();
@@ -1111,12 +1112,12 @@ public:
 	/**
 	 * Run the WFC algorithm, and return the result if the algorithm succeeded.
 	 */
-	std::optional<Array2D<T>> run() noexcept {
-		std::optional<Array2D<unsigned>> result = wfc.run();
+	tl::optional<Array2D<T>> run() noexcept {
+		tl::optional<Array2D<unsigned>> result = wfc.run();
 		if (result.has_value()) {
 			return to_image(*result);
 		}
-		return std::nullopt;
+		return tl::nullopt;
 	}
 };
 
@@ -1465,10 +1466,10 @@ public:
 	/**
 	 * Run the tiling wfc and return the result if the algorithm succeeded
 	 */
-	std::optional<Array2D<T>> run() {
+	tl::optional<Array2D<T>> run() {
 		auto a = wfc.run();
-		if (a == std::nullopt) {
-			return std::nullopt;
+		if (a == tl::nullopt) {
+			return tl::nullopt;
 		}
 		return id_to_tiling(*a);
 	}

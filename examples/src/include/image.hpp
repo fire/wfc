@@ -12,13 +12,13 @@
 /**
  * Read an image. Returns nullopt if there was an error.
  */
-std::optional<Array2D<Color>> read_image(const std::string& file_path) noexcept {
+tl::optional<Array2D<Color>> read_image(const std::string& file_path) noexcept {
   int width;
   int height;
   int num_components;
   unsigned char *data = stbi_load(file_path.c_str(), &width, &height, &num_components, 3);
   if(data == nullptr) {
-    return std::nullopt;
+    return tl::nullopt;
   }
   Array2D<Color> m = Array2D<Color>(height, width);
   for(unsigned i = 0; i < (unsigned)height; i++) {

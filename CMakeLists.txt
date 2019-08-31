@@ -27,7 +27,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 add_executable(${PROJECT_NAME}_demo examples/src/lib/main.cpp)
 set_target_properties(fastwfc PROPERTIES LINKER_LANGUAGE CXX)
-target_link_libraries(${PROJECT_NAME}_demo ${PROJECT_NAME}_static)
 
 target_include_directories(${PROJECT_NAME}_demo PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/examples/src/include>)

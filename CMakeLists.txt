@@ -11,7 +11,16 @@ endif()
 
 include(GNUInstallDirs)
 
-set(SOURCE_FILES src/lib/wfc.cpp)
+set(SOURCE_FILES 
+src/include/utils/array3D.hpp
+src/include/utils/array2D.hpp
+src/include/direction.hpp
+src/include/overlapping_wfc.hpp
+src/include/propagator.hpp
+src/include/tiling_wfc.hpp
+src/include/wave.hpp
+src/include/wfc.hpp
+src/lib/wfc.cpp)
 
 add_library(${PROJECT_NAME}_static STATIC ${SOURCE_FILES})
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})

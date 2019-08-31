@@ -5,9 +5,6 @@
 #include <string>
 #include "time.h"
 
-#include "fastwfc/overlapping_wfc.hpp"
-#include "fastwfc/tiling_wfc.hpp"
-#include "fastwfc/utils/array3D.hpp"
 #include "fastwfc/wfc.hpp"
 #include "external/rapidxml.hpp"
 #include "image.hpp"

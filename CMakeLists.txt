@@ -12,23 +12,11 @@ endif()
 include(GNUInstallDirs)
 
 set(SOURCE_FILES 
-src/include/fastwfc/utils/array3D.hpp
-src/include/fastwfc/utils/array2D.hpp
-src/include/fastwfc/direction.hpp
-src/include/fastwfc/overlapping_wfc.hpp
-src/include/fastwfc/propagator.hpp
-src/include/fastwfc/tiling_wfc.hpp
-src/include/fastwfc/wave.hpp
-src/include/fastwfc/wfc.hpp
-src/lib/wfc.cpp)
+src/include/fastwfc/wfc.hpp)
 
-add_library(${PROJECT_NAME}_static STATIC ${SOURCE_FILES})
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
 set(LIBRARY_OUTPUT_PATH lib CACHE PATH "Build directory" FORCE)
-
-target_include_directories(${PROJECT_NAME}_static PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>)
@@ -38,6 +26,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
   SOVERSION 1)
 
 add_executable(${PROJECT_NAME}_demo examples/src/lib/main.cpp)
+set_target_properties(fastwfc PROPERTIES LINKER_LANGUAGE CXX)
 target_link_libraries(${PROJECT_NAME}_demo ${PROJECT_NAME}_static)
 
 target_include_directories(${PROJECT_NAME}_demo PUBLIC
@@ -57,15 +46,8 @@ install(DIRECTORY examples/samples DESTINATION share/fastwfc-examples)
 install(FILES examples/samples.xml DESTINATION share/fastwfc-examples)
 install(FILES examples/results/.empty DESTINATION share/fastwfc-examples/results)
 
-install(TARGETS ${PROJECT_NAME}_static EXPORT FastWFCStaticConfig
-  ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
-
 install(DIRECTORY src/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 
 install(EXPORT FastWFCConfig DESTINATION share/fastwfc/cmake)
-install(EXPORT FastWFCStaticConfig DESTINATION share/fastwfc/cmake)
 
 export(TARGETS ${PROJECT_NAME} FILE FastWFCConfig.cmake)
-export(TARGETS ${PROJECT_NAME}_static FILE FastWFCStaticConfig.cmake)

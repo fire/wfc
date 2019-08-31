@@ -1,9 +1,15 @@
 #ifndef FAST_WFC_WFC_HPP_
 #define FAST_WFC_WFC_HPP_
+
 #include <optional>
 #include <random>
 #include "assert.h"
 #include <vector>
+#include <tuple>
+#include <array>
+#include <limits>
+#include <vector>
+#include <unordered_map>
 
 /**
  * Represent a 2D array.
@@ -154,9 +160,6 @@ constexpr unsigned get_opposite_direction(unsigned direction) noexcept {
 	return 3 - direction;
 }
 
-#include "assert.h"
-#include <vector>
-
 /**
  * Represent a 3D array.
  * The 3D array is stored in a single array, to improve cache usage.
@@ -228,10 +231,6 @@ public:
 	}
 };
 
-
-#include <tuple>
-#include <vector>
-#include <array>
 
 class Wave;
 
@@ -316,8 +315,6 @@ public:
 	void propagate(Wave &wave) noexcept;
 };
 
-#include <random>
-#include <vector>
 
 /**
  * Struct containing the values needed to compute the entropy of all the cells.
@@ -506,8 +503,6 @@ public:
 		}
 	}
 };
-
-#include <limits>
 
 void Propagator::init_compatible() noexcept {
 	std::array<int, 4> value;
@@ -808,9 +803,6 @@ WFC::ObserveStatus WFC::observe() noexcept {
 	return to_continue;
 }
 
-
-#include <vector>
-#include <unordered_map>
 
 /**
  * Options needed to use the overlapping wfc.
@@ -1128,8 +1120,6 @@ public:
 	}
 };
 
-#include <unordered_map>
-#include <vector>
 
 /**
  * The distinct symmetries of a tile.

@@ -158,7 +158,7 @@ unordered_map<string, Tile<Color>> read_tiles(xml_node<> *root_node,
           throw "Error while loading " + image_path;
         }
         if ((image->width != size) || (image->height != size)) {
-          throw "Image " + image_path + " has wrond size";
+          throw "Image " + image_path + " has wrong size";
         }
         images.push_back(*image);
       }

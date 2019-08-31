@@ -7,7 +7,7 @@ This branch is based upon https://github.com/math-fehr/fast-wfc.
 
 # Requirements
 
-You need a C++-17 compatible compiler, and CMake installed.
+You need a C++-11 compatible compiler, and CMake installed.
 
 # Install the library
 

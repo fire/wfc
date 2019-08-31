@@ -11,7 +11,7 @@ endif()
 
 include(GNUInstallDirs)
 
-set(SOURCE_FILES src/lib/wave.cpp src/lib/propagator.cpp src/lib/wfc.cpp)
+set(SOURCE_FILES src/lib/wfc.cpp)
 
 add_library(${PROJECT_NAME}_static STATIC ${SOURCE_FILES})
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
